@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Container from './container';
+import QuestionScreen from './presenter';
 import { actionCreators as userActions } from '../../redux/modules/user';
 import { actionCreators as cardActions } from '../../redux/modules/card';
 
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionScreen);

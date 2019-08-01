@@ -13,6 +13,7 @@ const AppNavigator  = createStackNavigator(
   },
   {
     initialRouteName: 'LogIn',
+    /*
     defaultNavigationOptions: {
       headerStyle: {
         borderBottomWidth: 0,
@@ -27,7 +28,8 @@ const AppNavigator  = createStackNavigator(
         </View>
       ),
     },
-    // headerMode: 'none'
+    */
+    headerMode: 'none'
   }
 );
 

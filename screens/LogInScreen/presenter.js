@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import { Text, StyleSheet, View, StatusBar } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import KakaoLogin from '../../assets/images/kakao_login.svg'
+import GithubLogin from '../../assets/images/github_login.svg'
+import styles from './styles.js';
 
 class LogInScreen extends React.Component {
   state = {
-    isPressed: false
-  }
-
-  change = () => {
-    this.setState({isPressed: true});
-  }
-
-  unchange = () => {
-    this.setState({isPressed: false});
-    this.props.kakaoLogin();
+    isPressed_kakao: false,
+    isPressed_github: false
   }
 
   render() {
+    console.log("LogInScreen/presenter.js의 render() 속 this.prop: ", this.prop);
+
     return (
       <View style={styles.container}>
         <StatusBar hidden={false} />
@@ -29,47 +25,63 @@ class LogInScreen extends React.Component {
             시그널입니다!
           </Text>
         </View>
-        {this.state.isPressed === true ?
+        {
+          this.state.isPressed_kakao === true ?
           <KakaoLogin
             width={wp('75%')} 
             height={wp('12.605%')}
             marginBottom= {wp('6%')} // 트위터 클론
             fillOpacity={0.5}
             disabled={false}
-            onPress={this.unchange}/> :
+            onPress={this.unchange_kakao}
+          /> :
           <KakaoLogin 
             width={wp('75%')} 
             height={wp('12.605%')} 
             marginBottom= {wp('6%')} // 트위터 클론
             disabled={false} 
-            onPressIn={this.change}/>}
+            onPressIn={this.change_kakao}
+          />
+        }
+        {
+          this.state.isPressed_github === true ?
+          <GithubLogin
+            width={wp('75%')} 
+            height={wp('12.605%')}
+            marginBottom= {wp('6%')} // 트위터 클론
+            fillOpacity={0.5}
+            disabled={false}
+            onPress={this.unchange_github}
+          /> :
+          <GithubLogin 
+            width={wp('75%')} 
+            height={wp('12.605%')} 
+            marginBottom= {wp('6%')} // 트위터 클론
+            disabled={false} 
+            onPressIn={this.change_github}
+          />
+        }
       </View>
     );
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white'
-  },
-  title1: {
-    width: wp('70%'),
-    backgroundColor: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'justify'
-  },
-  title2: {
-    width: wp('70%'),
-    marginBottom: wp('6%'), // 트위터 클론
-    backgroundColor: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'justify'
+  
+  change_kakao = () => {
+    this.setState({isPressed_kakao: true});
   }
-});
+
+  unchange_kakao = () => {
+    this.setState({isPressed_kakao: false});
+    this.props.kakaoLogin();
+  }
+
+  change_github = () => {
+    this.setState({isPressed_github: true});
+  }
+
+  unchange_github = () => {
+    this.setState({isPressed_github: false});
+    this.props.githubLogin();
+  }
+}
 
 export default LogInScreen;

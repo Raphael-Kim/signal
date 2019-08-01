@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
-import Container from './container';
+import HomeScreen from './presenter';
 import { actionCreators as userActions } from '../../redux/modules/user';
 import { actionCreators as cardActions } from '../../redux/modules/card';
 
 const mapStateToProps = (state, ownProps) => {
   console.log('mapStateToProps from HomeScreen/index.js');
+
   const { user: { userInfo } } = state; // → userInfo from kakao 
   const { card: { askCard } } = state;
+  
   return {
     userInfo,
     askCard
@@ -24,4 +26,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

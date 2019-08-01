@@ -1,69 +1,95 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, Platform, Text, TouchableOpacity, Button } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import ViewMoreText from 'react-native-view-more-text';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import styles from './styles.js'
 
 class Card extends React.PureComponent {
   componentWillUnmount() {
     console.log(this.props.askCode, '가 unmount 되었습니다.');
   }
 
+  state = {
+    tags: [
+      {id: 0, text: 'HASHTAG1'}, 
+      {id: 2, text: 'HASHTAG2'}, 
+      {id: 3, text: 'HASHTAG3'}, 
+      {id: 4, text: 'HASHTAG4'}, 
+      {id: 5, text: 'HASHTAG5'}, 
+      {id: 6, text: 'HASHTAG6'}
+    ]
+  }
+
   render() {
-    console.log(this.props.askCode, "여기는 Card(HomeScreen)/index.js의 render()함수 안입니다.");
+    console.log("여기는 Card(HomeScreen)/index.js의 render()함수 안입니다.");
     
     const { askCode } = this.props;
-    const { profile_image } = this.props.properties;
+    const { profile_image } = this.props;
     const { userName } = this.props;
     const { isFollowed } = this.props;
     const { askTitle } = this.props;
-    const { hashTag } = this.props;
+    // const { hashTag } = this.props;
     const { numberOfSignal } = this.props;
     const { numberOfAnswer } = this.props;
 
     return(
       <TouchableOpacity
         activeOpacity={1}
-        onPress={() => {this.props.navigation.navigate('Question', null);}}
+        onPress={() => {this.props.navigation.navigate('Question', this.props);}}
       >
         <View style={styles.container}>
           <View style={styles.boxTop}>
-            <View style={styles.userRow}>
-              <Image 
-                source={{uri: `${profile_image}`}} 
-                resizeMode='stretch'
-                style={styles.profileImage}
-              />
-              <Text style={styles.userName} numberOfLines={1}>
-                {userName}
-              </Text>
-              {
-                isFollowed === true ? (
-                  <Text style={styles.isSubscribing} numberOfLines={1}>
-                    구독중
-                  </Text> 
-                ) : (
-                  <TouchableOpacity
-                    activeOpacity={0.5}
-                    onPress={() => {alert('isFollowed 바꾸는 Redux 작업 할것');}}
-                  >
-                    <Text style={styles.subscribe} numberOfLines={1}>
-                      구독하기
-                    </Text>
-                  </TouchableOpacity>
-                )
-              }
-            </View>
+            <Image 
+              source={{uri: `${profile_image}`}} 
+              resizeMode='stretch'
+              style={styles.profileImage}
+            />
+            <Text style={styles.userName} numberOfLines={1}>
+              {userName}
+            </Text>
+            {
+              isFollowed === true ? (
+                <Text style={styles.isSubscribing} numberOfLines={1}>
+                  구독중
+                </Text> 
+              ) : (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => {alert('isFollowed 바꾸는 Redux 작업 할것');}}
+                >
+                  <Text style={styles.subscribe} numberOfLines={1}>
+                    구독하기
+                  </Text>
+                </TouchableOpacity>
+              )
+            }
+          </View>
+          <View style={styles.boxCenter}>  
             <Text style={styles.askTitle} numberOfLines={2}>
               {askTitle}
             </Text>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => {alert('#(hashtag) 작업 할것');}}
-            >
-              <Text style={styles.hashTag} numberOfLines={1}>
-                #{hashTag}
-              </Text>
-            </TouchableOpacity>
+            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+              <ViewMoreText
+                  numberOfLines={1}
+                  renderViewMore={this.renderViewMore}
+                  renderViewLess={this.renderViewLess}
+                  textStyle={styles.hashTag}
+                >
+                  {
+                    this.state.tags && this.state.tags.map( item => {
+                      return (
+                        <Text key={item.id}>
+                          <Text onPress={() => {alert('#(hashtag) 작업 할것');}}>
+                            #{item.text}
+                          </Text>
+                          <Text>  </Text>
+                        </Text>
+                      )
+                    })
+                  }      
+              </ViewMoreText>    
+            </View>
           </View>
           <View style={styles.boxBottom}>
             {
@@ -90,90 +116,14 @@ class Card extends React.PureComponent {
       </TouchableOpacity>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white'
-  },
-  ///////////////////////////
-  boxTop: {
-  },
-  boxBottom: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5
-  },
-  ///////////////////////////
-  userRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5
-  },
-  userName: {
-    fontFamily: 'NanumSquareR',
-    color: 'black',
-    textAlign: 'center',
-    fontSize: 17.5,
-    paddingHorizontal: 5
-  },
-  profileImage: {
-    height: 40,
-    width: 40,
-    borderRadius: (40 * 1) / 2,
-    backgroundColor: '#E6E6E6',
-  },
-  isSubscribing: {
-    fontFamily: 'NanumSquareR',
-    color: 'black',
-    textAlign: 'center',
-    fontSize: 17.5
-  },
-  subscribe: {
-    fontFamily: 'NanumSquareR',
-    color: 'blue',
-    textAlign: 'center',
-    fontSize: 17.5
-  },
-  ///////////////////////////
-  askTitle: {
-    fontFamily: 'NanumSquareR',
-    color: 'black',
-    fontSize: 20,
-    textAlign: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 20,
-  },
-  ///////////////////////////
-  hashTag: {
-    fontFamily: 'NanumSquareR',
-    color: 'grey',
-    fontSize: 17.5,
-    textAlign: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 10
-  },
-  ///////////////////////////
-  noAnswer: {
-    fontFamily: 'NanumSquareR',
-    color: 'grey',
-    fontSize: 17.5,
-    flex: 1
-  },
-  numberOfAnswer: {
-    fontFamily: 'NanumSquareR',
-    color: 'black',
-    fontSize: 17.5,
-    flex: 1
-  },
-  ///////////////////////////
-  signal: {
-    fontFamily: 'NanumSquareR',
-    color: 'black',
-    fontSize: 17.5,
-  },
-});
+  renderViewMore = (onPress) => (
+    <Text onPress={onPress} style={{fontSize: 17, color:'grey'}}>더 보기</Text>
+  )
+
+  renderViewLess = (onPress) => ( 
+    null // disable viewless
+  )  
+}
 
 export default withNavigation(Card);

@@ -28,6 +28,7 @@
     },
     "packagerOpts": {
       "config": "metro.config.js"
-    }
+    },
+    "description": ""
   }
 }

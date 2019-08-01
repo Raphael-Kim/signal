@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
 import HomeScreen from '../screens/HomeScreen';
 import QuestionScreen from '../screens/QuestionScreen';
-import AskScreen from '../screens/AskScreen';
 import AnswerScreen from '../screens/AnswerScreen';
+import ProfileScreen from '../screens/ProfileScreen'
+import ProfileButton from '../components/ProfileButton(HomeScreen)'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // API: createStackNavigator(RouteConfigs, StackNavigatorConfig);
 const AppNavigator  = createStackNavigator(
@@ -17,11 +18,11 @@ const AppNavigator  = createStackNavigator(
     Question: {
       screen: QuestionScreen
     },
-    Ask: {
-      screen: AskScreen
-    },
     Answer: {
       screen: AnswerScreen
+    },
+    Profile: {
+      screen: ProfileScreen
     }
   },
   {
@@ -29,7 +30,7 @@ const AppNavigator  = createStackNavigator(
     headerLayoutPreset: 'left',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
       },
       headerLeftContainerStyle: {
       },
@@ -50,13 +51,7 @@ const AppNavigator  = createStackNavigator(
         </View>
       ),
       headerRight: (
-        <View style={{height: '100%', width: 32, justifyContent: 'center'}}>
-          <Image 
-            style={{height: 32, width: 32}} 
-            resizeMode='stretch' 
-            source={require('../assets/images/search(x1).png')}
-          />
-        </View>
+        <ProfileButton/>
       ),
     },
     // headerMode: 'none'

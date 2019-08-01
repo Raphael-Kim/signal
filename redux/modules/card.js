@@ -77,7 +77,7 @@ function reducer(state = initialState, action) {
 
 function applySetAskCard(state, action) {
   const { askCard } = action;
-  console.log(state.askCard === askCard);
+  console.log("applySetAskCard()가 실행중입니다. state.askCard === askCard: ", state.askCard === askCard);
   return {
     ...state,
     askCard
