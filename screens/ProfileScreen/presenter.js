@@ -34,167 +34,114 @@ class ProfileScreen extends React.Component {
   }
 
   state = {
-    image: null,
+    profile_image: null,
   }
   
   componentDidMount() {
-    this.setState({ image: this.props.navigation.state.params.userInfo.profile_image })
+    const { profile_image } = this.props.navigation.state.params.userInfo;
+
+    this.setState({ profile_image })
   }
 
   render() {
     console.log("ProfileScreen/presenter의 render()함수 안입니다. this.props: ", this.props);
-    let { image } = this.state;
+    const { profile_image } = this.state;
 
     return (
       <ScrollView>
-        <View style={{
-          borderWidth: 2,
-          borderRadius: 20,
-          margin: 10,
-          borderColor: '#00B0F0'
-        }}>
+        <View style={styles.profileContainer}>
           <View style={styles.profileImageView}>
             <View style={{justifyContent: 'center'}}>
               <TouchableOpacity
-                style={styles.profileImage}
+                style={[styles.profileImageView_profileImage, {backgroundColor: '#E6E6E6'}]}
                 onPress={() => {
                   this.getPermissionAsync();
                   this.pickImage();
                 }}
               >
                 {
-                  image &&
+                  profile_image &&
                     <Image 
-                      source={{ uri: image }} 
-                      style={{     
-                        height: wp('30%'),
-                        width: wp('30%'),
-                        borderRadius: (wp('30%') * 1) /2
-                      }} 
+                      source={{ uri: profile_image }} 
+                      style={styles.profileImageView_profileImage} 
                     />
                 }
               </TouchableOpacity>
             </View>
-
-            <View
-              style={{
-                flex: 1,
-                // backgroundColor: 'pink',
-                justifyContent: 'center',
-                marginHorizontal: hp('2.5%')
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 17,
-                  fontWeight: 'bold',
-                  color: '#3C3C3C'
-                }}
-              >
+            <View style={styles.profileImageView_profileTextView}>
+              <Text style={styles.profileTextView_name}>
                 윤지호{'\n'}
-                <Text
-                  style={{
-                    fontWeight: 'normal',
-                    color: '#3C3C3C'
-                  }}
-                >
+                <Text style={styles.profileTextView_id}>
                   @ZalSaengGim
                 </Text>
               </Text>
-              <View
-                style={{
-                  // height: hp('5%'),
-                  // backgroundColor: 'blue',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginTop: 10
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 17,
-                    fontWeight: 'bold',
-                    color: '#3C3C3C',
-                    textAlign: 'center',
-                    backgroundColor: 'white'
-                  }}                
-                >
+              <View style={styles.profileTextView_infoView}>
+                <Text style={styles.infoView_title}>
                   팔로잉{'\n'}
-                  <Text
-                    style={{
-                      fontWeight: 'normal',
-                      color: '#3C3C3C'
-                    }}                  
-                  >
+                  <Text style={styles.infoView_number}>
                     68465
                   </Text>
                 </Text>
-                <Text
-                  style={{
-                    fontSize: 17,
-                    fontWeight: 'bold',
-                    color: '#3C3C3C',
-                    textAlign: 'center'
-                  }}                
-                >
+                <Text style={styles.infoView_title}>
                   팔로우{'\n'}
-                  <Text
-                    style={{
-                      fontWeight: 'normal',
-                      color: '#3C3C3C'
-                    }}                  
-                  >
+                  <Text style={styles.infoView_number}>
                     63
                   </Text>
                 </Text>
-                <Text
-                  style={{
-                    fontSize: 17,
-                    fontWeight: 'bold',
-                    color: '#3C3C3C',
-                    textAlign: 'center'
-                  }}                
-                >
+                <Text style={styles.infoView_title}>
                   포인트{'\n'}
-                  <Text
-                    style={{
-                      fontWeight: 'normal',
-                      color: '#3C3C3C'
-                    }}                  
-                  >
+                  <Text style={styles.infoView_number}>
                     비공개
                   </Text>
                 </Text>                               
               </View>
             </View>
-          </View>        
-          <View style={styles.profileInfoView}>
-            <Text
-              style={{
-                fontSize: 17,
-                textAlign: 'center'
-              }}
-            >
+          </View>
+          <View style={styles.profileIntroduceMyselfView}>
+            <Text style={styles.profileIntroduceMyselfView_text}>
               코딩과 사랑에 빠진 남자.{'\n'}
               @Arica와 함께♥: 2018.07.18~ing{'\n'}
               유튜브: www.youtube.com/ZiHO8282
             </Text>
           </View>
-          <View style={styles.profileInfoView}>
-            <Text
-              style={{
-                fontSize: 17,
-                // textAlign: 'center'
-              }}
-            >
-              Harvard University에서 Computer Science 재학중(석사){'\n'}
-              서울대학교에서 컴퓨터 공학과 졸업(2018){'\n'}
+          <View style={styles.separatorView}/>
+          <View style={styles.profileCareerView}>
+            <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+              프로필{'\n'}
             </Text>
+
+            <View style={styles.profileCareerView_schoolView}>
+              <View style={styles.schoolView_titleView}>
+                <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+                  직장
+                </Text>
+              </View>
+              <View style={styles.schoolView_textView}>
+                <Text style={{fontSize: 17}}>
+                  Google에서 Software Engineer로 근무중{'\n'}
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.profileCareerView_schoolView}>
+              <View style={styles.schoolView_titleView}>
+                <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+                  학력
+                </Text>
+              </View>
+              <View style={styles.schoolView_textView}>
+                <Text style={{fontSize: 17}}>
+                  Harvard University에서 Computer Science 재학중(석사){'\n'}
+                  서울대학교에서 컴퓨터 공학과 졸업(2018)
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
-        <View style={styles.profileFeedView}>
-          <Text>
-            피드
+
+        <View style={styles.feedContainer}>
+          <Text style={{fontSize: 17}}>
+            {'\n'}피드
           </Text>
         </View>
       </ScrollView>
