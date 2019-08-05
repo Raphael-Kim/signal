@@ -1,13 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
-  container: { 
+  container: {
     flex: 1,
     backgroundColor: '#E6E6E6'
-    // height: hp('100%'), 
-    // width: wp('100%'),
   },
+
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~
   addQuestionSAView: {
     position: 'absolute',
@@ -17,7 +16,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end'
   },
   addQuestion: {
-    //-----------------POSITION 
+    //-----------------POSITION
     // position: 'absolute',
     right: 25,
     bottom: 25,
@@ -65,9 +64,9 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   scrollableTopBar: {
-    width: 40, 
-    height: 5, 
-    borderRadius: 25, 
+    width: 40,
+    height: 5,
+    borderRadius: 25,
     backgroundColor: 'white'
   },
   scrollableMiddle: {
@@ -77,8 +76,8 @@ export default StyleSheet.create({
     borderTopEndRadius: 20
   },
   scrollableMiddleUp: {
-    height: 50, 
-    borderRadius: 20, 
+    height: 50,
+    borderRadius: 20,
     backgroundColor: 'white',
     justifyContent: 'center',
     paddingHorizontal: 20

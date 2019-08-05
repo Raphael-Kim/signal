@@ -25,6 +25,7 @@
     "react-native-modal": "^11.1.0",
     "react-native-responsive-screen": "^1.2.2",
     "react-native-snap-carousel": "^3.8.0",
+    "react-native-svg": "~9.4.0",
     "react-native-tags": "^2.1.0",
     "react-native-view-more-text": "^2.1.0",
     "react-native-web": "^0.11.4",

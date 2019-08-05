@@ -43,9 +43,9 @@ const AppNavigator  = createStackNavigator(
       },
       headerTitle: (
         <View style={{height: '100%', width: 69, justifyContent: 'center'}}>
-          <Image 
-            style={{height: 37, width: 69}} 
-            resizeMode='stretch' 
+          <Image
+            style={{height: 37, width: 69}}
+            resizeMode='stretch'
             source={require('../assets/images/logo(x1).png')}
           />
         </View>
@@ -54,7 +54,7 @@ const AppNavigator  = createStackNavigator(
         <ProfileButton/>
       ),
     },
-    // headerMode: 'none'
+    //headerMode: 'none'
   }
 );
 

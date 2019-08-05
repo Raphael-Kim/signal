@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ScrollView, Animated } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { SafeAreaView } from 'react-navigation';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -16,25 +16,25 @@ class QuestionScreen extends React.Component {
     },
     headerStyle: {
       backgroundColor: 'white',
-      borderBottomWidth: 0
+      borderBottomWidth: 0,
     }
   }
 
   state = {
     entries: [
-      {id: 0, text: 'ANSWER1'}, 
-      {id: 2, text: 'ANSWER2'}, 
-      {id: 3, text: 'ANSWER3'}, 
-      {id: 4, text: 'ANSWER4'}, 
-      {id: 5, text: 'ANSWER5'}, 
+      {id: 0, text: 'ANSWER1'},
+      {id: 2, text: 'ANSWER2'},
+      {id: 3, text: 'ANSWER3'},
+      {id: 4, text: 'ANSWER4'},
+      {id: 5, text: 'ANSWER5'},
       {id: 6, text: 'ANSWER6'}
     ],
     tags: [
-      {id: 0, text: 'HASHTAG1'}, 
-      {id: 2, text: 'HASHTAG2'}, 
-      {id: 3, text: 'HASHTAG3'}, 
+      {id: 0, text: 'HASHTAG1'},
+      {id: 2, text: 'HASHTAG2'},
+      {id: 3, text: 'HASHTAG3'},
       {id: 4, text: 'HASHTAG4'},
-      {id: 5, text: 'HASHTAG5'}, 
+      {id: 5, text: 'HASHTAG5'},
       {id: 6, text: 'HASHTAG6'}
     ],
     activeSlide: 0,
@@ -42,7 +42,9 @@ class QuestionScreen extends React.Component {
     visibleModal: null,
     modalText: null,
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    isAnswerContainerVisible: false
+    isAnswerContainerVisible: false,
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    position: new Animated.ValueXY({x:0,y:300})
   }
 
   render() {
@@ -58,11 +60,11 @@ class QuestionScreen extends React.Component {
     const { numberOfAnswer } = this.props.navigation.state.params;
 
     return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1,backgroundColor: '#E6E6E6'}}>
       <ScrollView contentContainerStyle={styles.questionContainer}>
         <View style={styles.boxTop}>
-          <Image 
-            source={{uri: `${profile_image}`}} 
+          <Image
+            source={{uri: `${profile_image}`}}
             resizeMode='stretch'
             style={styles.profileImage}
           />
@@ -73,7 +75,7 @@ class QuestionScreen extends React.Component {
             isFollowed === true ? (
               <Text style={styles.isSubscribing} numberOfLines={1}>
                 구독중
-              </Text> 
+              </Text>
             ) : (
               <TouchableOpacity
                 activeOpacity={0.5}
@@ -86,7 +88,7 @@ class QuestionScreen extends React.Component {
             )
           }
         </View>
-        <View style={styles.boxCenter}>  
+        <View style={styles.boxCenter}>
           <Text style={styles.askTitle} numberOfLines={2}>
             {askTitle}
           </Text>
@@ -108,8 +110,8 @@ class QuestionScreen extends React.Component {
                       </Text>
                     )
                   })
-                }      
-            </ViewMoreText>    
+                }
+            </ViewMoreText>
           </View>
         </View>
         <View style={styles.boxBottom}>
@@ -117,11 +119,11 @@ class QuestionScreen extends React.Component {
             numberOfAnswer === 0 ? (
               <Text style={styles.noAnswer} numberOfLines={1}>
                 의견이 있으신가요?
-              </Text> 
+              </Text>
             ) : (
               <Text style={styles.numberOfAnswer} numberOfLines={1}>
                 답변 {numberOfAnswer}개
-              </Text> 
+              </Text>
             )
           }
           <TouchableOpacity
@@ -131,28 +133,28 @@ class QuestionScreen extends React.Component {
             <Text style={styles.signal} numberOfLines={1}>
               시그널 {numberOfSignal}개
             </Text>
-          </TouchableOpacity>        
+          </TouchableOpacity>
         </View>
 
-        <Text 
-          style={{ 
-            height: hp('100%'), 
-            backgroundColor: '#CDD0D4', 
-            textAlign: 'center', 
-            fontSize: 17, 
+        <Text
+          style={{
+            height: hp('100%'),
+            backgroundColor: '#CDD0D4',
+            textAlign: 'center',
+            fontSize: 17,
             color: 'black',
-            paddingTop: 25 
+            paddingTop: 25
           }}
         >
           WEB VIEW
         </Text>
 
         {
-          /* 
+          /*
         <WebView
           style={{ height: hp('100%') }}
           source={{ uri: 'https://github.com/react-native-community/react-native-webview' }}
-        /> 
+        />
           */
         }
 
@@ -160,8 +162,8 @@ class QuestionScreen extends React.Component {
 
       {
         this.state.isAnswerContainerVisible === true ? (
-          <View style={styles.answerContainer}>
-            <View 
+          <Animated.View style={{height: hp('34%'), backgroundColor: '#E6E6E6', transform:[{translateY:this.state.position.y}]}}>
+            <View
               style={{
                 height: '15%',
                 flexDirection: 'row',
@@ -170,7 +172,7 @@ class QuestionScreen extends React.Component {
                 paddingHorizontal: wp('5%')
               }}
             >
-              <Text 
+              <Text
                 style={{
                   // fontFamily: 'NanumSquareR',
                   flex: 1,
@@ -192,7 +194,7 @@ class QuestionScreen extends React.Component {
                 }}
                 onPress={() => this.props.navigation.navigate('Answer', this.props.navigation.state.params, this.props.navigation.state.params.properties)}
               >
-                <Text 
+                <Text
                   style={{
                     // fontFamily: 'NanumSquareR',
                     textAlign: 'center',
@@ -203,7 +205,7 @@ class QuestionScreen extends React.Component {
                 >
                   답변하기
                 </Text>
-              </TouchableOpacity>          
+              </TouchableOpacity>
             </View>
             <Carousel
               ref={c => this._slider1Ref = c}
@@ -221,11 +223,11 @@ class QuestionScreen extends React.Component {
               firstItem={this.state.activeSlide}
               onSnapToItem={(index) => this.setState({ activeSlide: index }) }
             />
-          </View>
-        ) : (
-          null
-        )
-      }
+        </Animated.View>
+      ) : (
+        null
+      )
+    }
 
       <Modal
         isVisible={this.state.visibleModal === 'scrollable'}
@@ -299,17 +301,17 @@ class QuestionScreen extends React.Component {
       <SafeAreaView style={styles.answerContainerSetterSAView}>
         {
           this.state.isAnswerContainerVisible === true ? (
-            <Text 
+            <Text
               style={styles.answerContainerSetterText}
-              onPress={()=> {this.setState({ isAnswerContainerVisible: false });}}
+              onPress={()=> {this.close()}}
             >
               탭해서 닫기
             </Text>
-          
+
           ) : (
-            <Text 
+            <Text
               style={styles.answerContainerSetterText}
-              onPress={()=> {this.setState({ isAnswerContainerVisible: true });}}
+              onPress={()=> {this.open()}}
             >
               {numberOfAnswer}개의 답변
             </Text>
@@ -321,11 +323,33 @@ class QuestionScreen extends React.Component {
     );
   }
 
+  open = () => {
+    this.setState({isAnswerContainerVisible:true}, () => {
+      Animated.spring (
+        this.state.position, {
+          toValue : {x:0, y:0},
+          friction : 13,
+          tension : 60,
+      }).start();
+    });
+  };
+
+  close = () => {
+    Animated.spring (
+      this.state.position, {
+        toValue : {x:0, y:300},
+        friction : 13,
+        tension : 60,
+    }).start(() => {
+      this.setState({isAnswerContainerVisible:false});
+    });
+  };
+
   renderViewMore = (onPress) => (
     <Text onPress={onPress} style={{fontSize: 17, color:'grey'}}>더 보기</Text>
   )
 
-  renderViewLess = (onPress) => ( 
+  renderViewLess = (onPress) => (
     null // disable viewless
   )
 
@@ -334,16 +358,16 @@ class QuestionScreen extends React.Component {
       <TouchableOpacity
         activeOpacity={1}
         style={{
-          flex: 1, 
+          flex: 1,
           backgroundColor: 'white',
-          // marginTop: 0, 
-          marginBottom: 25, 
+          // marginTop: 0,
+          marginBottom: 25,
           borderRadius: 20,
           justifyContent: 'center'
         }}
         onPress={() => this.setState({ visibleModal: 'scrollable' })}
       >
-        <Text 
+        <Text
           style={{
             textAlign: 'center',
             // fontFamily: 'NanumSquareR',
@@ -405,8 +429,8 @@ class QuestionScreen extends React.Component {
       <Pagination
         dotsLength={entries.length}
         activeDotIndex={activeSlide}
-        containerStyle={{ 
-          backgroundColor: '#E6E6E6' 
+        containerStyle={{
+          backgroundColor: '#E6E6E6'
         }}
         dotStyle={{
           width: 10,
