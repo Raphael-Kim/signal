@@ -35,9 +35,9 @@ class HomeScreen extends React.Component {
 
     return(
       <View style={styles.container}>
-        <View style={{height: paddingHeight/3, width:wp('100%'), backgroundColor: 'white'}}>
+        <View style={{height: paddingHeight/2, width:wp('100%'), backgroundColor: 'white'}}>
         </View>
-        <View style={{height:hp('100%')-paddingHeight/3, width:wp('100%'), backgroundColor: 'white'}}>
+        <View style={{height:hp('100%')-paddingHeight/2, width:wp('100%'), backgroundColor: 'white'}}>
           <AnimatedFlatList
             data={this.props.askCard}
             renderItem={({ item }) => {
