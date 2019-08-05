@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View, StatusBar } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import KakaoLogin from '../../assets/images/kakao_login.svg'
-import GithubLogin from '../../assets/images/github_login.svg'
+import KakaoLogin from '../../assets/images/kakao_login.svg';
+import GithubLogin from '../../assets/images/github_login.svg';
 import styles from './styles.js';
 
 class LogInScreen extends React.Component {
@@ -28,43 +28,43 @@ class LogInScreen extends React.Component {
         {
           this.state.isPressed_kakao === true ?
           <KakaoLogin
-            width={wp('75%')} 
+            width={wp('75%')}
             height={wp('12.605%')}
             marginBottom= {wp('6%')} // 트위터 클론
             fillOpacity={0.5}
             disabled={false}
             onPress={this.unchange_kakao}
           /> :
-          <KakaoLogin 
-            width={wp('75%')} 
-            height={wp('12.605%')} 
+          <KakaoLogin
+            width={wp('75%')}
+            height={wp('12.605%')}
             marginBottom= {wp('6%')} // 트위터 클론
-            disabled={false} 
+            disabled={false}
             onPressIn={this.change_kakao}
           />
         }
         {
           this.state.isPressed_github === true ?
           <GithubLogin
-            width={wp('75%')} 
+            width={wp('75%')}
             height={wp('12.605%')}
             marginBottom= {wp('6%')} // 트위터 클론
             fillOpacity={0.5}
             disabled={false}
             onPress={this.unchange_github}
           /> :
-          <GithubLogin 
-            width={wp('75%')} 
-            height={wp('12.605%')} 
+          <GithubLogin
+            width={wp('75%')}
+            height={wp('12.605%')}
             marginBottom= {wp('6%')} // 트위터 클론
-            disabled={false} 
+            disabled={false}
             onPressIn={this.change_github}
           />
         }
       </View>
     );
   }
-  
+
   change_kakao = () => {
     this.setState({isPressed_kakao: true});
   }

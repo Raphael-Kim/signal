@@ -4,15 +4,16 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 export default StyleSheet.create({
   questionContainer: {
     // flex: 1,
-    // height: hp('70%'), 
-    backgroundColor: 'white'
+    // height: hp('70%'),
+    backgroundColor: '#E6E6E6'
   },
   answerContainer: {
-    height: hp('34%'), 
+    height: hp('34%'),
     backgroundColor: '#E6E6E6'
   },
   //~~~~~~~~~~~~~~~~~~~~~~~~~
   boxTop: {
+    backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
@@ -21,11 +22,13 @@ export default StyleSheet.create({
     // backgroundColor: 'pink'
   },
   boxCenter: {
+    backgroundColor: 'white',
     // alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 20
   },
   boxBottom: {
+    backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
@@ -131,9 +134,9 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   scrollableTopBar: {
-    width: 40, 
-    height: 5, 
-    borderRadius: 25, 
+    width: 40,
+    height: 5,
+    borderRadius: 25,
     backgroundColor: 'white'
   },
   scrollableMiddle: {
@@ -143,8 +146,8 @@ export default StyleSheet.create({
     borderTopEndRadius: 20
   },
   scrollableMiddleUp: {
-    height: 50, 
-    borderRadius: 20, 
+    height: 50,
+    borderRadius: 20,
     backgroundColor: 'white',
     justifyContent: 'center',
     paddingHorizontal: 20
@@ -188,8 +191,8 @@ export default StyleSheet.create({
   },
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~
   answerContainerSetterSAView: {
-    left: 0, 
-    right: 0, 
+    left: 0,
+    right: 0,
     bottom: 0,
     // alignItems: 'center',
     backgroundColor: '#00B0F0'

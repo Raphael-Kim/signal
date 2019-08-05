@@ -18,12 +18,12 @@ class RootContainer extends React.Component {
 
     if(this.state.isReady === false) {
       return(
-        <AppLoading 
+        <AppLoading
           //autoHideSplash={false} → 제거한 이후 <AppLoading> 화면에 갇히는 문제 제거(2019.02.04 14:12)
           startAsync={() => {
             return Promise.all([
               this.props.checkTokenForKakao(),
-              this.loadFontsAsync(), 
+              this.loadFontsAsync(),
               this.loadImagesAsync()
             ]);
           }} // → 세 함수가 모두 Promise.resolve()되면 onFinish()가 실행됩니다.
@@ -38,7 +38,7 @@ class RootContainer extends React.Component {
 
     this.props.checkTokenForKakao();
 
-    return( 
+    return(
       <View style={styles.container}>
         <StatusBar hidden={false} />
         {isLoggedIn ? (

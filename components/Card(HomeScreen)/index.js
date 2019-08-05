@@ -12,18 +12,19 @@ class Card extends React.PureComponent {
 
   state = {
     tags: [
-      {id: 0, text: 'HASHTAG1'}, 
-      {id: 2, text: 'HASHTAG2'}, 
-      {id: 3, text: 'HASHTAG3'}, 
-      {id: 4, text: 'HASHTAG4'}, 
-      {id: 5, text: 'HASHTAG5'}, 
+      {id: 0, text: 'HASHTAG1'},
+      {id: 2, text: 'HASHTAG2'},
+      {id: 3, text: 'HASHTAG3'},
+      {id: 4, text: 'HASHTAG4'},
+      {id: 5, text: 'HASHTAG5'},
       {id: 6, text: 'HASHTAG6'}
     ]
   }
 
   render() {
     console.log("여기는 Card(HomeScreen)/index.js의 render()함수 안입니다.");
-    
+    console.log(this.props);
+
     const { askCode } = this.props;
     const { profile_image } = this.props;
     const { userName } = this.props;
@@ -40,8 +41,8 @@ class Card extends React.PureComponent {
       >
         <View style={styles.container}>
           <View style={styles.boxTop}>
-            <Image 
-              source={{uri: `${profile_image}`}} 
+            <Image
+              source={{uri: `${profile_image}`}}
               resizeMode='stretch'
               style={styles.profileImage}
             />
@@ -52,7 +53,7 @@ class Card extends React.PureComponent {
               isFollowed === true ? (
                 <Text style={styles.isSubscribing} numberOfLines={1}>
                   구독중
-                </Text> 
+                </Text>
               ) : (
                 <TouchableOpacity
                   activeOpacity={0.5}
@@ -65,7 +66,7 @@ class Card extends React.PureComponent {
               )
             }
           </View>
-          <View style={styles.boxCenter}>  
+          <View style={styles.boxCenter}>
             <Text style={styles.askTitle} numberOfLines={2}>
               {askTitle}
             </Text>
@@ -87,8 +88,8 @@ class Card extends React.PureComponent {
                         </Text>
                       )
                     })
-                  }      
-              </ViewMoreText>    
+                  }
+              </ViewMoreText>
             </View>
           </View>
           <View style={styles.boxBottom}>
@@ -96,11 +97,11 @@ class Card extends React.PureComponent {
               numberOfAnswer === 0 ? (
                 <Text style={styles.noAnswer} numberOfLines={1}>
                   의견이 있으신가요?
-                </Text> 
+                </Text>
               ) : (
                 <Text style={styles.numberOfAnswer} numberOfLines={1}>
                   답변 {numberOfAnswer}개
-                </Text> 
+                </Text>
               )
             }
             <TouchableOpacity
@@ -110,7 +111,7 @@ class Card extends React.PureComponent {
               <Text style={styles.signal} numberOfLines={1}>
                 시그널 {numberOfSignal}개
               </Text>
-            </TouchableOpacity>        
+            </TouchableOpacity>
           </View>
         </View>
       </TouchableOpacity>
@@ -121,9 +122,9 @@ class Card extends React.PureComponent {
     <Text onPress={onPress} style={{fontSize: 17, color:'grey'}}>더 보기</Text>
   )
 
-  renderViewLess = (onPress) => ( 
+  renderViewLess = (onPress) => (
     null // disable viewless
-  )  
+  )
 }
 
 export default withNavigation(Card);
