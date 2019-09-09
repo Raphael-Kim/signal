@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity, ScrollView, Animated } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { SafeAreaView } from 'react-navigation';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Modal from 'react-native-modal';
 import ViewMoreText from 'react-native-view-more-text';
-import styles from './styles.js';
+import styles from './styles';
 
 class QuestionScreen extends React.Component {
   static navigationOptions = {
@@ -15,8 +16,8 @@ class QuestionScreen extends React.Component {
       alignItems: 'center'
     },
     headerStyle: {
-      backgroundColor: 'white',
-      borderBottomWidth: 0,
+      // backgroundColor: 'white',
+      // borderBottomWidth: 0,
     }
   }
 
@@ -60,7 +61,7 @@ class QuestionScreen extends React.Component {
     const { numberOfAnswer } = this.props.navigation.state.params;
 
     return (
-    <View style={{flex: 1,backgroundColor: '#E6E6E6'}}>
+    <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={styles.questionContainer}>
         <View style={styles.boxTop}>
           <Image
@@ -126,6 +127,7 @@ class QuestionScreen extends React.Component {
               </Text>
             )
           }
+
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => {alert('signal버튼 작업 할것');}}
@@ -134,27 +136,48 @@ class QuestionScreen extends React.Component {
               시그널 {numberOfSignal}개
             </Text>
           </TouchableOpacity>
+          
+          <View
+            style={{
+              width: 10 // 간격 넓히기 위해서 추가
+            }}
+          />
+          
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() => {this.props.navigation.navigate('Ladder');}}
+          >
+            <MaterialCommunityIcons 
+              name='resistor-nodes' 
+              size={30} 
+              color='black'
+              style={{
+                // backgroundColor: 'blue',
+                paddingTop: 2
+              }}
+            />
+          </TouchableOpacity>
         </View>
-
-        <Text
-          style={{
-            height: hp('100%'),
-            backgroundColor: '#CDD0D4',
-            textAlign: 'center',
-            fontSize: 17,
-            color: 'black',
-            paddingTop: 25
-          }}
-        >
-          WEB VIEW
-        </Text>
 
         {
           /*
-        <WebView
-          style={{ height: hp('100%') }}
-          source={{ uri: 'https://github.com/react-native-community/react-native-webview' }}
-        />
+            <WebView
+              style={{ height: hp('100%') }}
+              source={{ uri: 'https://github.com/react-native-community/react-native-webview' }}
+            />
+            
+            <Text
+              style={{
+                height: hp('100%'),
+                backgroundColor: '#CDD0D4',
+                textAlign: 'center',
+                fontSize: 17,
+                color: 'black',
+                paddingTop: 25
+              }}
+            >
+              WEB VIEW
+            </Text>
           */
         }
 
@@ -162,7 +185,13 @@ class QuestionScreen extends React.Component {
 
       {
         this.state.isAnswerContainerVisible === true ? (
-          <Animated.View style={{height: hp('34%'), backgroundColor: '#E6E6E6', transform:[{translateY:this.state.position.y}]}}>
+          <Animated.View 
+            style={{
+              height: hp('34%'), 
+              backgroundColor: '#E6E6E6', 
+              transform:[{translateY:this.state.position.y}]
+            }}
+          >
             <View
               style={{
                 height: '15%',

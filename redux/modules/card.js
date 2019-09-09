@@ -44,8 +44,8 @@ function init() {
       let response = await fetch('http://106.10.58.66:8888/fetchAskCard', {
         method: 'POST',
         headers: {
-            'Accept': 'application/json;charset=UTF-8',
-            'Content-Type': 'application/json;charset=UTF-8',
+          'Accept': 'application/json;charset=UTF-8',
+          'Content-Type': 'application/json;charset=UTF-8',
         }          
       })
       let json = await response.json();

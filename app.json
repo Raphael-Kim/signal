@@ -13,7 +13,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash(x4).png",
+      "image": "./assets/splash(x2).png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
@@ -28,7 +28,11 @@
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "svg"]
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svg"
+      ]
     },
     "description": ""
   }

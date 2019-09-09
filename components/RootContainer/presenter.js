@@ -4,7 +4,7 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import LoggedOutNavigation from '../../navigation/LoggedOutNavigation';
-import LoggedInNavigation from '../../navigation/LoggedInNavigation';
+import LoggedInBottomTabNavigation from '../../navigation/LoggedInBottomTabNavigation';
 
 class RootContainer extends React.Component {
   state = {
@@ -43,7 +43,7 @@ class RootContainer extends React.Component {
         <StatusBar hidden={false} />
         {isLoggedIn ? (
           // Home 화면으로 이동
-          <LoggedInNavigation/>
+          <LoggedInBottomTabNavigation/>
         ) : (
           // Login 화면으로 이동
           <LoggedOutNavigation/>
@@ -66,9 +66,9 @@ class RootContainer extends React.Component {
   loadImagesAsync = async () => {
     console.log('loadImagesAsync start');
     await Asset.loadAsync([
-      require('../../assets/images/logo(x1).png'),
+      require('../../assets/images/logo(x4).png'),
       require('../../assets/images/logoSmall(x1).png'),
-      require('../../assets/images/search(x1).png')
+      require('../../assets/images/search(x2).png')
     ]);
     console.log('loadImagesAsync end');
   };

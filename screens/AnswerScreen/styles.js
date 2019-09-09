@@ -3,7 +3,41 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#F7FAFF'
+  },
+  suggestionsRowContainer: {
+    flexDirection: 'row',
+  },
+  userAvatarBox: {
+    width: 35,
+    paddingTop: 2
+  },
+  userIconBox: {
+    height: 45,
+    width: 45,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#54c19c'
+  },
+  usernameInitials: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 14
+  },
+  userDetailsBox: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 10,
+    paddingRight: 15
+  },
+  displayNameText: {
+    fontSize: 13,
+    fontWeight: '500'
+  },
+  usernameText: {
+    fontSize: 12,
+    color: 'rgba(0,0,0,0.6)'
   },
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~
   answer: {
@@ -26,7 +60,8 @@ export default StyleSheet.create({
   },
   textInputBox: {
     borderColor: 'grey', 
-    borderBottomWidth: 1, 
+    borderBottomWidth: 1,
+    backgroundColor: 'pink'
     // justifyContent: 'flex-end',
   },
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~

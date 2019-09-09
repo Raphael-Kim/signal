@@ -102,7 +102,7 @@ export default StyleSheet.create({
   signal: {
     // fontFamily: 'NanumSquareR',
     color: 'black',
-    fontSize: 17
+    fontSize: 17,
   },
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~
   modalSubmit: {

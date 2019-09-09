@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, StatusBar } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import HomeScreen from '../screens/HomeScreen';
+import HomeTabScreen from '../screens/HomeTabScreen';
 import QuestionScreen from '../screens/QuestionScreen';
 import AnswerScreen from '../screens/AnswerScreen';
-import ProfileScreen from '../screens/ProfileScreen'
+import LadderScreen from '../screens/LadderScreen';
 import ProfileButton from '../components/ProfileButton(HomeScreen)'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // API: createStackNavigator(RouteConfigs, StackNavigatorConfig);
 const AppNavigator  = createStackNavigator(
   {
-    Home: {
-      screen: HomeScreen
+    HomeTab: {
+      screen: HomeTabScreen
     },
     Question: {
       screen: QuestionScreen
@@ -21,43 +20,45 @@ const AppNavigator  = createStackNavigator(
     Answer: {
       screen: AnswerScreen
     },
-    Profile: {
-      screen: ProfileScreen
+    Ladder: {
+      screen: LadderScreen
     }
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'HomeTab',
     headerLayoutPreset: 'left',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: 'white',
+        backgroundColor: '#272822',
       },
       headerLeftContainerStyle: {
       },
       headerTitleContainerStyle: {
         alignItems: 'flex-start',
-        marginLeft: 10,
+        // marginLeft: 10,
       },
       headerRightContainerStyle: {
         marginRight: 10,
       },
       headerTitle: (
-        <View style={{height: '100%', width: 69, justifyContent: 'center'}}>
-          <Image
-            style={{height: 37, width: 69}}
-            resizeMode='stretch'
-            source={require('../assets/images/logo(x1).png')}
+        <View style={{height: '100%', width: 90, marginLeft: 20, justifyContent: 'center'}}>
+          <StatusBar barStyle={'light-content'} hidden={false} />
+          <Image 
+            style={{height: 34, width: 90, marginTop: 14}} 
+            resizeMode='stretch' 
+            source={require('../assets/images/logo(x4).png')}
           />
         </View>
       ),
-      headerRight: (
-        <ProfileButton/>
-      ),
+      // headerRight: (
+      //   <ProfileButton/>
+      // ),
     },
     //headerMode: 'none'
   }
 );
 
-const LoggedInNavigation = createAppContainer(AppNavigator);
+// const LoggedInNavigation = createAppContainer(AppNavigator);
 
-export default LoggedInNavigation;
+// export default LoggedInNavigation;
+export default AppNavigator;

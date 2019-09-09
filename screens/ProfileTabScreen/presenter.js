@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
-import styles from './styles.js';
+import styles from './styles';
 import Amplify, { Auth, Storage } from 'aws-amplify';
 
 Amplify.configure({
@@ -20,17 +20,9 @@ Amplify.configure({
     }
 });
 
-class ProfileScreen extends React.Component {
+class ProfileTabScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: '윤지호', // signal 로고 덮어쓰기
-    headerRight: null,
-    headerTitleContainerStyle: {
-      alignItems: 'center'
-    },
-    headerStyle: {
-      backgroundColor: 'white',
-      borderBottomWidth: 0
-    }
+
   }
 
   state = {
@@ -38,13 +30,13 @@ class ProfileScreen extends React.Component {
   }
   
   componentDidMount() {
-    const { profile_image } = this.props.navigation.state.params.userInfo;
+    const { profile_image } = this.props.userInfo;
 
     this.setState({ profile_image })
   }
 
   render() {
-    console.log("ProfileScreen/presenter의 render()함수 안입니다. this.props: ", this.props);
+    console.log("ProfileTabScreen/presenter의 render()함수 안입니다. this.props: ", this.props);
     const { profile_image } = this.state;
 
     return (
@@ -70,7 +62,7 @@ class ProfileScreen extends React.Component {
             </View>
             <View style={styles.profileImageView_profileTextView}>
               <Text style={styles.profileTextView_name}>
-                윤지호{'\n'}
+                김성재{'\n'}
                 <Text style={styles.profileTextView_id}>
                   @ZalSaengGim
                 </Text>
@@ -99,8 +91,7 @@ class ProfileScreen extends React.Component {
           </View>
           <View style={styles.profileIntroduceMyselfView}>
             <Text style={styles.profileIntroduceMyselfView_text}>
-              코딩과 사랑에 빠진 남자.{'\n'}
-              @Arica와 함께♥: 2018.07.18~ing{'\n'}
+              코딩에 푹 빠진 남자.{'\n'}
               유튜브: www.youtube.com/ZiHO8282
             </Text>
           </View>
@@ -118,7 +109,7 @@ class ProfileScreen extends React.Component {
               </View>
               <View style={styles.schoolView_textView}>
                 <Text style={{fontSize: 17}}>
-                  Google에서 Software Engineer로 근무중{'\n'}
+                  시그널에서 Software Engineer로 근무중{'\n'}
                 </Text>
               </View>
             </View>
@@ -131,8 +122,8 @@ class ProfileScreen extends React.Component {
               </View>
               <View style={styles.schoolView_textView}>
                 <Text style={{fontSize: 17}}>
-                  Harvard University에서 Computer Science 재학중(석사){'\n'}
-                  서울대학교에서 컴퓨터 공학과 졸업(2018)
+                  HUFS에서 Computer Science 재학중{'\n'}
+                  HUFS에서 베트남어과 재학중
                 </Text>
               </View>
             </View>
@@ -141,7 +132,9 @@ class ProfileScreen extends React.Component {
 
         <View style={styles.feedContainer}>
           <Text style={{fontSize: 17}}>
-            {'\n'}피드
+            {
+              // {'\n'}피드
+            }
           </Text>
         </View>
       </ScrollView>
@@ -185,4 +178,4 @@ class ProfileScreen extends React.Component {
   };
 }
 
-export default ProfileScreen;
+export default ProfileTabScreen;

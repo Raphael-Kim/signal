@@ -4,9 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: '#EC6D2D'
   },
   title: {
     width: wp('70%'),
@@ -15,5 +13,20 @@ export default StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'justify'
+  },
+  selectButton: {
+    height: hp('5%'),
+    width: wp('45%'),
+    borderRadius: (wp('30%') * 1) /2,
+    justifyContent: 'center',
+    alignItems: 'center'
+    // backgroundColor: '#E6E6E6'
+  },
+  selectSentenceButton: {
+    height: wp('13%'),
+    width: wp('13%'),
+    borderRadius: (wp('13%') * 1) /2,
+    justifyContent: 'center',
+    alignItems: 'center'  
   }
 });

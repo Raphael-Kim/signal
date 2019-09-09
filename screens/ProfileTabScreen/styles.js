@@ -6,7 +6,7 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
     margin: 10,
-    borderColor: '#00B0F0',
+    borderColor: '#272822',
     paddingVertical: hp('2.5%')
   },
   profileImageView: {
@@ -88,7 +88,7 @@ export default StyleSheet.create({
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   feedContainer: {
     // marginHorizontal: wp('5%'),
-    backgroundColor: '#E6E6E6',
+    // backgroundColor: '#E6E6E6',
     height: hp('100%'),
     alignItems: 'center'
   }

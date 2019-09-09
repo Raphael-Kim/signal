@@ -6,7 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#E6E6E6'
   },
-
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~
   addQuestionSAView: {
     position: 'absolute',
@@ -18,8 +17,8 @@ export default StyleSheet.create({
   addQuestion: {
     //-----------------POSITION
     // position: 'absolute',
-    right: 25,
-    bottom: 25,
+    right: 15,
+    bottom: 15,
     //-------------------LAYOUT
     height: 55,
     width: 55,

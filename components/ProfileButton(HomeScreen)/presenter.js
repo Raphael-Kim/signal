@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import styles from './styles.js'
+import styles from './styles'
 
 class ProfileButton extends React.PureComponent {
   render() {

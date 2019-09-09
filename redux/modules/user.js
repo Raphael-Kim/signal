@@ -48,7 +48,7 @@ function setUserProfile(userProfile) {
 
 // API Actions
 function githubLogin() {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     /* ↓ [1단계] authorization_code 수령해오기 */     
     let redirectUrl = AuthSession.getRedirectUrl();
     let result = await AuthSession.startAsync({
